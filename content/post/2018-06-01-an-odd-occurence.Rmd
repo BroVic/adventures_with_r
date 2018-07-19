@@ -20,7 +20,7 @@ _**Caveat: The knowledgable reader will immediately see that the data used for t
 I was trying to fix up a data entry interface using the `DataEntry` package and in trying to enter the levels of a given factor I came across this happenstance:
 
 ```{r}
-df <- read.csv("../data/database.csv")
+df <- read.csv("../../../../../7-NESREA/SA/Data/PandE/nesrea_awareness/data/database.csv")
 # ... levels of other columns checked
 df[[4]]
 ``` 
