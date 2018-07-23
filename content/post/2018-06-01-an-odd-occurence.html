@@ -1,0 +1,48 @@
+---
+title: An Odd Occurence
+author: Victor Ordu
+date: '2018-06-01'
+slug: an-odd-occurence
+categories: []
+tags: []
+banner: ''
+description: ''
+images: []
+menu: ''
+---
+
+
+
+<p><em><strong>Caveat: The knowledgable reader will immediately see that the data used for this post is far from ideal (in all respects). The real aim of submitting this post, in spite of the obvious shortcomings, is to help prevent what could be a source of needless frustration to many a data scientist.</strong></em></p>
+<p>I was trying to fix up a data entry interface using the <code>DataEntry</code> package and in trying to enter the levels of a given factor I came across this happenstance:</p>
+<pre class="r"><code>df &lt;- read.csv(&quot;../../../../../7-NESREA/SA/Data/PandE/nesrea_awareness/data/database.csv&quot;)
+# ... levels of other columns checked
+df[[4]]</code></pre>
+<pre><code>##  [1] Use of bin bags              AEPB                        
+##  [3] waste collector              indigenous local collectors 
+##  [5] gather in front of my shop   gather in front of my shop  
+##  [7]                              waste collector             
+##  [9]                              van that evacuates the waste
+## [11] bin bags                     dump site                   
+## [13] waste bags                   dump site                   
+## [15] waste bin                    wheelbarrow boys            
+## [17] waste collector              waste collector             
+## [19] wheelbarrow boys             wheelbarrow boys            
+## [21] scavengers                  
+## 13 Levels:  AEPB bin bags dump site ... wheelbarrow boys</code></pre>
+<p>When I saw this output, I figured that in order for me to see the levels accurately I would need to call <code>levels()</code>. However, since I was trying to do a quick job, I wanted to copy the levels to the clipboard and paste into the appropriate field in <code>DataEntry</code>. So I didn’t need all the other stuff that would come with regular printing to the console and I chose to use <code>cat</code></p>
+<pre class="r"><code>cat(levels(df[[4]]))</code></pre>
+<pre><code>##  AEPB bin bags dump site gather in front of my shop indigenous local collectors scavengers Use of bin bags van that evacuates the waste waste bags waste bin waste collector wheelbarrow boys</code></pre>
+<p>Which looks pretty good and worked just fine in terms of convenience. But then I decided I needed to also view a regular printout of the levels since they were so jumbled up.</p>
+<pre class="r"><code>levels(df[[4]])</code></pre>
+<pre><code>##  [1] &quot;&quot;                             &quot;AEPB&quot;                        
+##  [3] &quot;bin bags&quot;                     &quot;dump site&quot;                   
+##  [5] &quot;gather in front of my shop&quot;   &quot;indigenous local collectors&quot; 
+##  [7] &quot;scavengers&quot;                   &quot;Use of bin bags&quot;             
+##  [9] &quot;van that evacuates the waste&quot; &quot;waste bags&quot;                  
+## [11] &quot;waste bin&quot;                    &quot;waste collector&quot;             
+## [13] &quot;wheelbarrow boys&quot;</code></pre>
+<p>I was shocked! I had almost totally missed the first element among the given categories because it contained NOTHING!</p>
+<p>The horror this would have unleashed on my further work with the data is best imagined (after all, I was just trying to draft a data entry format and fix the factors later).</p>
+<p>There are so many lessons to be learnt from this near-fiasco.</p>
+<p>Tread carefully.</p>
